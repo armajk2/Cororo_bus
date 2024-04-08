@@ -76,7 +76,7 @@ function closePageAndOpenMain() {
 
 function resetTimer() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(closePageAndOpenMain, 6000); // Set a new timer for 10 seconds
+    inactivityTimer = setTimeout(closePageAndOpenMain, 60000); 
 }
 
 document.addEventListener('mousemove', resetTimer);
