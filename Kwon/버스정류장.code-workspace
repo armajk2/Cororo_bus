@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../시험"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "버스정류장"
+	}
+}

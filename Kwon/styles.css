@@ -1,0 +1,151 @@
+
+:root {
+    --ti-cursor-margin-left: 0.1em;
+    --ti-cursor-color: rgb(248, 105, 3);
+}
+
+body {
+    background-color: black;
+    display: flex;
+    padding: 0;
+   margin: 0;
+    height: 500vh;
+    
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#title {
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    font-size: 75px;
+    text-align: center;
+    margin-top: 95px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block; 
+}
+
+.thin {
+    font-weight: normal;
+}
+
+.bold {
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.cover {
+   
+    width:  100%;/* 화면 너비에서 여백을 빼서 띠의 너비 설정 */
+    height: 1%;
+    display: flex;
+    margin-bottom: 10rem;
+    flex-direction: column; 
+    z-index: 999; 
+    position: relative;
+   
+}
+
+.cover:nth-child(1) {
+    margin-top: 35rem; /* child1이 화면의 제일 위에 위치하도록 조정 */
+    transform: rotate(-2deg);
+    background-color: rgb(255, 227, 232);
+    display: block; 
+}
+
+.cover:nth-child(2) {
+    transform: rotate(4deg);
+    background-color: rgb(238, 70, 140);
+    color: whitesmoke;
+    justify-content: center;
+    margin-top: 8rem; /* child1보다 조금 더 아래쪽에 위치하도록 조정 */
+    margin-left: calc(50% - 50vw);
+}
+
+p {
+    display: flex;
+    font-size: 1rem; /* 텍스트 주변에 여백 추가 */
+    padding: 0%; /* 글씨 크기 조정 */
+    white-space: nowrap; 
+    justify-content: center; /* 텍스트가 한 줄로만 나오도록 설정 */
+}
+ /* 이미지 스타일 */
+
+    /* 그 외 스타일 지정 */
+ /* 이미지 스타일 */
+.image1 {
+    position: absolute; /* 절대 위치 */
+    top: 900px; /* 원하는 위치로 조정 */
+    left: 50px; /* 원하는 위치로 조정 */
+    width: 700px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+
+.image2 {
+    position: absolute; /* 절대 위치 */
+    top: 1100px; /* 원하는 위치로 조정 */
+    left: 800px; /* 원하는 위치로 조정 */
+    width: 1000px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+.image3 {
+    position: absolute; /* 절대 위치 */
+    top: 1500px; /* 원하는 위치로 조정 */
+    left: 200px; /* 원하는 위치로 조정 */
+    width: 470px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+
+.image4 {
+    position: absolute; /* 절대 위치 */
+    top: 1750px; /* 원하는 위치로 조정 */
+    left: 700px; /* 원하는 위치로 조정 */
+    width: 950px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+.image5 {
+    position: absolute; /* 절대 위치 */
+    top: 2050px; /* 원하는 위치로 조정 */
+    left: 1100px; /* 원하는 위치로 조정 */
+    width: 630px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+.image6 {
+    position: absolute; /* 절대 위치 */
+    top: 2050px; /* 원하는 위치로 조정 */
+    left: 200px; /* 원하는 위치로 조정 */
+    width: 430px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+.image7 {
+    position: absolute; /* 절대 위치 */
+    top: 2550px; /* 원하는 위치로 조정 */
+    left: 250px; /* 원하는 위치로 조정 */
+    width: 480px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+.image8 {
+    position: absolute; /* 절대 위치 */
+    top: 2850px; /* 원하는 위치로 조정 */
+    left: 500px; /* 원하는 위치로 조정 */
+    width: 430px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    /* 그 외 스타일 지정 */
+}
+
+
+/* 추가 이미지에 대한 스타일 추가 */
+
+

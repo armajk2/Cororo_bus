@@ -1,0 +1,68 @@
+body {
+    font-family: "Futura-CondensedExtraBold", sans-serif;
+    background-color: rgb(246, 245, 243);
+    font-size: 40px;
+    line-height: 7px;
+    color: rgba(17, 17, 17, 0.976);
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    margin-right: 0px;
+    margin-left: 30px;
+}
+.bar {
+    position: fixed;
+    background-color: transparent;
+}
+input.img-button {
+    background: url("../img/stickerleft.png") no-repeat;
+    width: 50px;
+    height: 150px;
+    border: 0;
+    background-size: 50px;
+    margin-top: 30px;
+  }
+
+  input.img-button2 {
+    background: url("../img/stickerright.png") no-repeat;
+    width: 50px;
+    height: 150px;
+    border: 0;
+    background-size: 50px;
+    margin-top: 30px;
+  }
+
+.h {
+    text-align: center;  
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+
+p:not(.first) {
+    float: left;
+    padding-left: 10px;
+    padding-right: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.red {
+    color: #FF0000;
+}
+
+
+.blue {
+    color: #40c7b2;
+}
+
+.first {
+    float: left;
+    padding-left: 4px;
+    padding-right: 5px;
+}
+

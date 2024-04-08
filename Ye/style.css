@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding:0;
+}
+html, body {
+    width: 100%;
+    height:100%;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    
+    
+}
+.link {
+    position: absolute;
+    /* background-color: aqua; */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.link div{
+    width: 100%;
+    height: 100%;
+}
+.bus {
+   display:grid;
+   grid-template-columns: repeat(10,1fr);
+   grid-template-rows: repeat(4,auto);
+   column-gap: 2px;
+   row-gap: 30px;
+   width:80%;
+   padding-left:5%;
+
+   /* align-items: center; */
+   justify-items: center;
+}
+.bus p {
+    display: inline-block;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size:0.8em;
+    line-height: 1.7em;
+    letter-spacing: -0.05em;
+    font-weight: 300;
+    /* text-indent: 40px; */
+    word-break:keep-all;
+}
+.bus span {
+    font-weight: 700;
+    font-size:1.4em;
+    line-height:1.6em;
+}
+.bus p:nth-child(1) {
+    grid-column: 2 / 4  ;
+}
+.bus p:nth-child(2) {
+    grid-column: 4 / 10;
+    margin-top:5%;
+    margin-left:1%;
+}
+.bus p:nth-child(3) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+    /* height:80%; */
+    /* text-align: right; */
+    margin-top:35%;
+    width:120%;
+    margin-right:20%;
+}
+.bus p:nth-child(4) {
+    grid-column: 2 / 3;
+    margin-right:5%;
+}
+.bus p:nth-child(5) {
+    grid-column: 3 /4;
+    grid-row: 2 / 4;
+    /* font-weight: 700; */
+    /* font-size: 1.5em; */
+    letter-spacing: -0.08em;
+    text-align: justify;
+    word-break:break-all;
+}
+.bus p:nth-child(6) {
+    grid-column: 4 / 6;
+    width: 90%;
+    text-align: justify;
+    word-break: normal;
+}
+.bus p:nth-child(7) {
+    grid-column: 6 / 8;
+    width:93%;
+    text-align: justify;
+    word-break: normal;
+}
+.bus p:nth-child(8) {
+    grid-column: 8 / 10;
+    width:85%;
+    text-align: justify;
+    word-break: normal;
+    margin-right: 7%;
+}
+.bus p:nth-child(9) {
+    text-indent: 0;
+    grid-column: 10 /11;
+    grid-row: 2 / 5;
+    width:50%;
+    text-align: right;
+    word-break: normal;
+    margin-right:50%;
+    letter-spacing: -0.08em;
+}
+.bus p:nth-child(10) {
+    grid-column: 4 /10;
+    grid-row: 3 / 4;
+    margin-bottom: 15%;
+    /* width:80%; */
+    /* font-weight: 500; */
+    text-align: center;
+    line-height: 1.5em;
+    font-style: oblique;
+}
+.bus p:nth-child(11) {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    margin-top: 30%;
+}
+.bus p:nth-child(12) {
+    grid-column: 3 / 5;
+    grid-row: 4 / 5;
+    text-align: center;
+    word-break:keep-all;
+    text-indent: 0;
+    font-weight: 500;
+    font-size: 1.2em;
+    letter-spacing: -0.07em;
+    animation: rotate 5s linear infinite;
+}
+.bus p:nth-child(13) {
+    grid-column: 5 / 8;
+    grid-row: 4 / 5;
+    margin-top:10%;
+}
+.bus p:nth-child(14) {
+    grid-column: 8 / 10;
+    grid-row: 4 / 5;
+    text-align: center;
+    text-indent: 0;
+    font-weight: 500;
+    font-size: 1.2em;
+    letter-spacing: -0.07em;
+
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(-360deg); }
+}
+
+.bus p:nth-child(15) {
+    grid-column: 4 /5;
+    grid-row: 3 / 4;
+    margin-top:10%;
+    mask: url('./img/S.svg');
+    mask-repeat: no-repeat;   
+    margin-right: 5%;
+}
+
+.bus p:nth-child(16) {
+    grid-column: 5 /6;
+    grid-row: 3 / 4;
+    margin-top:10%;
+    mask: url('./img/C.svg');
+    mask-repeat: no-repeat;
+    margin-right: 5%;
+}
+.bus p:nth-child(17) {
+    grid-column: 6 /7;
+    grid-row: 3 / 4;
+    margin-top:10%;
+    mask: url('./img/H.svg');
+    mask-repeat: no-repeat;
+    margin-right: 5%;
+}
+.bus p:nth-child(18) {
+    grid-column: 7 /8;
+    grid-row: 3 / 4;
+    margin-top:15%;
+    mask: url('./img/O.svg');
+    mask-repeat: no-repeat;
+    margin-right: 5%;
+}
+.bus p:nth-child(19) {
+    grid-column: 8 /9;
+    grid-row: 3 / 4;
+    margin-top:15%;
+    mask: url('./img/O2.svg');
+    mask-repeat: no-repeat;
+    margin-right: 5%;
+}
+.bus p:nth-child(20) {
+    grid-column: 9 /10;
+    grid-row: 3 / 4;
+    margin-top:10%;
+    mask: url('./img/L.svg');
+    mask-repeat: no-repeat;
+    margin-right: 5%;
+}
+.bus .letter {
+    width:80%;
+    font-size: 0.7em;
+    line-height: 1.1em;
+    text-align: justify;
+    /* font-weight: 600; */
+    word-break: break-all;
+}

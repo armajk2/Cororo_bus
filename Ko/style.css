@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'NeoDunggeunmoPro-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/NeoDunggeunmoPro-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+.image img {
+    /* image 클래스를 가진 <div> 요소 내부에 있는 모든 <img> 요소를 선택 */
+    mix-blend-mode: difference;
+}
+
+.glitch img {
+    width: 1600px;
+    mix-blend-mode: color-dodge; 
+}
+
+.text {
+    font-size: 50pt;
+    font-family: NeoDunggeunmoPro-Regular;
+}
+
+.text > span {
+    /* text 클래스를 가진 <div> 요소 내부에 있는 모든 <span> 요소를 선택 */
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 60s linear infinite;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-200%); }
+}
+
+.textW {
+    color: #ffffff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+}
+
+.textR {
+    color: #ff0000;
+    text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+}
+
+.textB {
+    color: #00f2ff;
+    text-shadow: 0 0 5px #00f2ff, 0 0 10px #00f2ff;
+}
+
+.textG {
+    color: #26ff00;
+    text-shadow: 0 0 5px #26ff00, 0 0 10px #26ff00;
+}
+
+.textY {
+    color: #ffff00;
+    text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00;
+}
+
+
+.collage {
+    position: relative;
+    margin: 0 auto;
+    width: 1920; /* 콜라주의 전체 너비 */
+    height: 1080px; /* 콜라주의 전체 높이 */
+}
+
+.collage img {
+    position: absolute;
+    /* 이미지의 크기는 원본 그대로 */
+    /* 이미지 간격 없이 겹쳐짐 */
+}

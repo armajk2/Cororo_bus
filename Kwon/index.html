@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="title"><span class="thin">Where Lies Your</span> <br><span class="bold">Destination?</span></h1>
+
+    <div class="cover">
+        <p class="first-parallel"></p>
+    </div>
+    <div class="cover">
+        <p class="second-parallel"></p>
+    </div>
+   
+    <img src="1line.png" alt="Image 1" class="image1 ">
+    <img src="line2.png" alt="Image 2" class="image2">
+    <img src="line3.png" alt="Image 3" class="image3">
+    <img src="line4.png" alt="Image 4" class="image4">
+    <img src="line5.png" alt="Image 5" class="image5">
+    <img src="line6.png" alt="Image 6" class="image6">
+    <img src="line7.png" alt="Image 7" class="image7">
+
+    <script src="https://unpkg.com/typeit@8.3.3/dist/index.umd.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new TypeIt('#title')
+                .pause(1000)
+                .delete(12, { delay: 1000 })
+                .type('<span class="bold">Journey?</span>')
+                .go();
+        });
+
+        const pTag1 = document.querySelector('.first-parallel');
+        const pTag2 = document.querySelector('.second-parallel');
+
+        const textArr1 = '3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선'.split('  ');
+        const textArr2 = '3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선'.split('  ');
+
+       
+        function initTexts(element, textArray){
+    // 텍스트 배열의 내용을 요소 내에 직접 설정합니다.
+    element.innerText = textArray.join('\u00A0\u00A0\u00A0\u00A0');
+}
+
+        initTexts(pTag1,textArr1);
+        initTexts(pTag2,textArr2);
+
+        let count1 = 0
+        let count2 = 0
+
+        function marqueeText(count, element, direction){
+            if (count > element.scrollWidth / 2){
+                element.style.transform = 'translateX(0)'
+                count = 0
+            }
+            element.style.transform = `translateX(${count * direction}px)`;
+            return count
+        }
+
+        function animate(){
+            count1++
+            count2++
+
+            count1 = marqueeText(count1, pTag1, -1);
+            count2 = marqueeText(count2, pTag2, 1);
+
+            window.requestAnimationFrame(animate)
+        }
+
+        animate()
+
+       
+        
+    </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,110 @@
+body {
+    font-family: "Futura-CondensedExtraBold", sans-serif;
+    background-color: rgb(246, 245, 243);
+    font-size: 40px;
+    color: rgba(17, 17, 17, 0.976);
+
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    margin-right: 0px;
+    margin-left: 30px;
+}
+
+.bar {
+    position: fixed;
+    background-color: transparent;
+}
+input.img-button {
+    background: url("../img/stickerleft.png") no-repeat;
+    width: 50px;
+    height: 150px;
+    border: 0;
+    background-size: 50px;
+    margin-top: 30px;
+  }
+
+  input.img-button2 {
+    background: url("../img/stickerright.png") no-repeat;
+    width: 50px;
+    height: 150px;
+    border: 0;
+    background-size: 50px;
+    margin-top: 30px;
+  }
+
+.h {
+    text-align: center;  
+}
+
+h1 {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.childblack {
+    font-size: 800px;
+
+    color: rgb(13, 13, 13);
+    letter-spacing: -40px;
+}
+
+.img img {
+    position: absolute;
+    cursor: pointer;
+    cursor: hand;
+    border: 0;
+}
+
+/* 버튼들을 수평으로 배열하고 중앙 정렬 */
+.button-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container2 {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 추가 버튼 스타일 */
+.addButton {
+    width: 50px;
+    cursor: pointer;
+    margin-right: 20px; /* 각 버튼 사이 간격 조절 */
+}
+
+/* 초기화 버튼 스타일 */
+#clearButton {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}
+
+/* 스크롤 방지 */
+body {
+    overflow: hidden;
+}
+
