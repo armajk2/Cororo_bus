@@ -67,21 +67,21 @@ function moveBus() {
 }
 
 
-let inactivityTimer;
+// let inactivityTimer;
 
-function closePageAndOpenMain() {
-    window.close(); // Close the current page
-    window.open('index.html', '_self'); // Open main.html in the same tab
-}
+// function closePageAndOpenMain() {
+//     window.close(); // Close the current page
+//     window.open('index.html', '_self'); // Open main.html in the same tab
+// }
 
-function resetTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(closePageAndOpenMain, 60000); 
-}
+// function resetTimer() {
+//     clearTimeout(inactivityTimer);
+//     inactivityTimer = setTimeout(closePageAndOpenMain, 60000); 
+// }
 
-document.addEventListener('mousemove', resetTimer);
+// document.addEventListener('mousemove', resetTimer);
 
-resetTimer();
+// resetTimer();
 
 
 
