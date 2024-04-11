@@ -5,22 +5,26 @@
 }
 
 body {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     display: flex;
     padding: 0;
    margin: 0;
-    height: 500vh;
+    height: auto;
     
     width: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
+    top: 0; /* 화면 위쪽에 고정시킵니다. */
+    left: 0; 
 }
 
 #title {
+    width: 800px;
     color: rgb(255, 255, 255);
     font-family: sans-serif;
     font-size: 75px;
     text-align: center;
-    margin-top: 95px;
+    margin-top: 100px;
     position: absolute;
     top: 300px;
     left: 50%;
@@ -39,33 +43,32 @@ body {
 }
 
 
-.cover {
-   
-    width:  100%;/* 화면 너비에서 여백을 빼서 띠의 너비 설정 */
-    height: 1%;
-    display: flex;
-    margin-bottom: 10rem;
-    flex-direction: column; 
-    z-index: 999; 
-    position: relative;
-   
+.cover:nth-of-type(1) {
+    margin-top: 13rem;
+    transform: rotate(-10deg); /* child1이 화면의 제일 위에 위치하도록 조정 */
+    background-color: rgb(255, 255, 255);
+    color: rgb(213, 105, 105);
+    margin-left: calc(50% - 50vw);
+    
+    z-index: 999;
+    line-height: 2px;
 }
 
-.cover:nth-child(1) {
-    margin-top: 35rem; /* child1이 화면의 제일 위에 위치하도록 조정 */
-    transform: rotate(-2deg);
-    background-color: rgb(255, 227, 232);
-    display: block; 
-}
-
-.cover:nth-child(2) {
-    transform: rotate(4deg);
-    background-color: rgb(238, 70, 140);
+.cover:nth-of-type(2) {
+    transform: rotate(2deg);
+    background-color: rgb(216, 69, 135);
     color: whitesmoke;
     justify-content: center;
-    margin-top: 8rem; /* child1보다 조금 더 아래쪽에 위치하도록 조정 */
+    margin-top: 10rem; /* child1보다 조금 더 아래쪽에 위치하도록 조정 */
     margin-left: calc(50% - 50vw);
+    position: fixed;
+    z-index: 999;
+    line-height: 2px;
 }
+
+
+
+
 
 p {
     display: flex;
@@ -80,7 +83,7 @@ p {
  /* 이미지 스타일 */
 .image1 {
     position: absolute; /* 절대 위치 */
-    top: 900px; /* 원하는 위치로 조정 */
+    top: 950px; /* 원하는 위치로 조정 */
     left: 50px; /* 원하는 위치로 조정 */
     width: 700px; /* 원하는 가로 크기로 조정 */
     height: auto;
@@ -89,35 +92,40 @@ p {
 
 .image2 {
     position: absolute; /* 절대 위치 */
-    top: 1100px; /* 원하는 위치로 조정 */
+    top: 1300px; /* 원하는 위치로 조정 */
     left: 800px; /* 원하는 위치로 조정 */
     width: 1000px; /* 원하는 가로 크기로 조정 */
     height: auto;
+   opacity: 80%;
     /* 그 외 스타일 지정 */
 }
 .image3 {
     position: absolute; /* 절대 위치 */
     top: 1500px; /* 원하는 위치로 조정 */
-    left: 200px; /* 원하는 위치로 조정 */
+    left: 300px; /* 원하는 위치로 조정 */
     width: 470px; /* 원하는 가로 크기로 조정 */
     height: auto;
+    
+    transform: rotate(20deg);
     /* 그 외 스타일 지정 */
 }
 
 .image4 {
     position: absolute; /* 절대 위치 */
-    top: 1750px; /* 원하는 위치로 조정 */
-    left: 700px; /* 원하는 위치로 조정 */
+    top: 1900px; /* 원하는 위치로 조정 */
+    left: 650px; /* 원하는 위치로 조정 */
     width: 950px; /* 원하는 가로 크기로 조정 */
     height: auto;
     /* 그 외 스타일 지정 */
+    transform: rotate(2deg);
 }
 .image5 {
     position: absolute; /* 절대 위치 */
-    top: 2050px; /* 원하는 위치로 조정 */
+    top: 2200px; /* 원하는 위치로 조정 */
     left: 1100px; /* 원하는 위치로 조정 */
-    width: 630px; /* 원하는 가로 크기로 조정 */
+    width: 650px; /* 원하는 가로 크기로 조정 */
     height: auto;
+    opacity: 90%;
     /* 그 외 스타일 지정 */
 }
 .image6 {
@@ -130,22 +138,40 @@ p {
 }
 .image7 {
     position: absolute; /* 절대 위치 */
-    top: 2550px; /* 원하는 위치로 조정 */
-    left: 250px; /* 원하는 위치로 조정 */
+    top: 2850px; /* 원하는 위치로 조정 */
+    left: 350px; /* 원하는 위치로 조정 */
     width: 480px; /* 원하는 가로 크기로 조정 */
     height: auto;
     /* 그 외 스타일 지정 */
 }
 .image8 {
     position: absolute; /* 절대 위치 */
-    top: 2850px; /* 원하는 위치로 조정 */
-    left: 500px; /* 원하는 위치로 조정 */
-    width: 430px; /* 원하는 가로 크기로 조정 */
+    top: 3350px; /* 원하는 위치로 조정 */
+    left: 100px; /* 원하는 위치로 조정 */
+    width: 830px; /* 원하는 가로 크기로 조정 */
     height: auto;
     /* 그 외 스타일 지정 */
 }
-
+.image9 {
+    position: absolute; /* 절대 위치 */
+    top: 3930px; /* 원하는 위치로 조정 */
+    left: 850px; /* 원하는 위치로 조정 */
+    width: 850px; /* 원하는 가로 크기로 조정 */
+    height: auto;
+    
+    /* 그 외 스타일 지정 */
+}
 
 /* 추가 이미지에 대한 스타일 추가 */
 
-
+.tooltip {
+    position: absolute;
+    padding: 4px 8px;
+    background-color: rgb(50, 50, 50);
+    color: rgb(252, 170, 170);
+    border-radius: 13px;
+    visibility: hidden;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+}

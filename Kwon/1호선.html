@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과즙 팡</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('./fruit.png'); /* 배경 이미지 경로 */
+            background-size: cover; /* 화면에 꽉 차도록 설정 */
+            background-repeat: no-repeat; /* 반복 없이 한 번만 나타나도록 설정 */
+            font-family: Arial, sans-serif;
+        }
+
+        .puzzle-piece {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 120px; /* 이미지 폭 조절 */
+            height: auto;
+        }
+
+        .dizzy-image {
+            position: absolute;
+            bottom: 4rem; /* 하단에 위치하도록 설정 */
+            animation: moveRight linear 9s infinite; /* 오른쪽에서 왼쪽으로 이동하는 애니메이션 */
+            width: 150px; /* 이미지 크기 조정 */
+            height: auto; /* 높이 자동으로 설정 */
+        }
+
+        @keyframes moveRight {
+            0% {
+                right: 0px; /* 시작 위치 (오른쪽 화면 밖) */
+            }
+            100% {
+                right: calc(100% + 200px); /* 끝 위치 (왼쪽 화면 밖) */
+            }
+        }
+        .tooltip {
+    position: absolute;
+    padding: 4px 8px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(251, 210, 97);
+    border-radius: 13px;
+    visibility: hidden;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.arrow-back {
+            display: inline-block;
+            width: 15px; /* 화살표 너비를 더 작게 */
+            height: 15px; /* 화살표 높이를 더 작게 */
+            background-color: transparent;
+            border: solid white; /* 테두리 색상 */
+            border-width: 0 5px 5px 0; /* 테두리 두께를 늘림 */
+            padding: 3px;
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            cursor: pointer;
+            position: fixed; /* 화살표를 화면에 고정 */
+            top: 20px; /* 화면 하단으로부터의 거리 */
+            left: 20px; /* 화면 오른쪽으로부터의 거리 */
+        }
+        .arrow-back:hover {
+            border-color: #fc99b4; /* 마우스 오버시 테두리 색상 변경 */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="arrow-back" onclick="event.stopPropagation(); window.location='index.html';"></div>
+    <!-- 여러 개의 퍼즐 조각 이미지 -->
+    <img src="./딸1_1.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 12%; left: 30%;">
+    <img src="./딸1_2.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 12%; left: 50%;">
+    <img src="./딸1_3.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 17%; left: 60%;">
+
+    <img src="./딸2_1.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 8%; left: 35%;">
+    <img src="./딸2_2.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 25%; left: 40%;">
+    <img src="./딸2_3.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 22%; left: 50%;">
+
+    <img src="./딸3_1.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 32%; left: 40%;">
+    <img src="./딸3_2.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 32%; left: 50%;">
+    <img src="./딸3_3.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 32%; left: 55%;">
+
+    <img src="./딸4_1.png" alt="퍼즐 조각" class="puzzle-piece" style="top: 37%; left: 60%;">
+
+    <!-- 땅콩버스 이미지 -->
+    <img src="땅콩버스.png" alt="Fruit Image" class="dizzy-image"data-tooltip="keep going...">
+</a>
+    
+    <script>
+        const puzzlePieces = document.querySelectorAll('.puzzle-piece');
+
+        puzzlePieces.forEach(piece => {
+            piece.addEventListener('mousedown', startDrag);
+            piece.addEventListener('mouseup', stopDrag);
+            piece.addEventListener('click', function(event) {
+                event.stopPropagation(); // 이벤트 전파를 막음
+            });
+        });
+
+        let activePiece = null;
+
+        function startDrag(event) {
+            activePiece = event.target;
+
+            // 마우스 위치와 요소의 위치 사이의 차이를 계산하여 이동할 때 원래 위치를 유지함
+            const offsetX = event.clientX - activePiece.getBoundingClientRect().left;
+            const offsetY = event.clientY - activePiece.getBoundingClientRect().top;
+
+            movePiece(event.pageX, event.pageY, offsetX, offsetY);
+
+            window.addEventListener('mousemove', dragPiece);
+        }
+
+        function dragPiece(event) {
+            event.preventDefault();
+            movePiece(event.pageX, event.pageY);
+        }
+
+        function movePiece(x, y, offsetX = 0, offsetY = 0) {
+            if (!activePiece) return;
+
+            activePiece.style.left = `${x - offsetX}px`;
+            activePiece.style.top = `${y - offsetY}px`;
+        }
+
+        function stopDrag() {
+            activePiece = null;
+            window.removeEventListener('mousemove', dragPiece);
+        }
+
+        document.addEventListener('click', function() {
+            alert("공중에 딸기는 뭐지..?");
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const tooltipElements = document.querySelectorAll('img[data-tooltip]');
+
+    tooltipElements.forEach(el => {
+        const tooltipText = el.getAttribute('data-tooltip');
+        const tooltipDiv = document.createElement('div');
+        tooltipDiv.className = 'tooltip';
+        tooltipDiv.textContent = tooltipText;
+        document.body.appendChild(tooltipDiv);
+
+        el.addEventListener('mouseenter', function(e) {
+            tooltipDiv.style.visibility = 'visible';
+            tooltipDiv.style.opacity = '1';
+            tooltipDiv.style.top = (e.pageY + 10) + 'px';
+            tooltipDiv.style.left = (e.pageX + 10) + 'px';
+        });
+
+        el.addEventListener('mousemove', function(e) {
+            tooltipDiv.style.top = (e.pageY + 10) + 'px';
+            tooltipDiv.style.left = (e.pageX + 10) + 'px';
+        });
+
+        el.addEventListener('mouseleave', function() {
+            tooltipDiv.style.visibility = 'hidden';
+            tooltipDiv.style.opacity = '0';
+        });
+    });
+});
+document.getElementById('backButton').addEventListener('click', function() {
+            window.history.back();
+            location.href = 'index.html'; 
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

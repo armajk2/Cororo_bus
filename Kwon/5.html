@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrolling PNG</title>
+<style>
+  /* 스타일링을 위한 CSS */
+  body {
+    height: 2000px; /* 스크롤이 발생할 수 있도록 페이지 높이 설정 */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* 배경색 추가 */
+  }
+  #movingImage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transition: top 0.5s, left 0.5s; /* 부드러운 이동을 위한 트랜지션 설정 */
+  }
+</style>
+</head>
+<body>
+<!-- 이동할 이미지 -->
+<img id="movingImage" src="땅콩버스.png" alt="Moving Image">
+
+<script>
+  window.addEventListener('scroll', function() {
+    var img = document.getElementById('movingImage');
+    var scrollPosition = window.scrollY; // 스크롤의 수직 위치
+    var windowHeight = window.innerHeight;
+    var halfWindowHeight = windowHeight / 2;
+
+    // 페이지 중간에 도달하기 전까지는 왼쪽 대각선으로 이동
+    if (scrollPosition < halfWindowHeight) {
+      img.style.top = (50 + scrollPosition) + '%';
+      img.style.left = (50 + scrollPosition) + '%';
+    } 
+    // 페이지 중간에 도달하면 오른쪽 대각선으로 이동
+    else {
+      var distanceFromMiddle = scrollPosition - halfWindowHeight;
+      img.style.top = (50 + halfWindowHeight + distanceFromMiddle) + '%';
+      img.style.left = (50 + halfWindowHeight - distanceFromMiddle) + '%';
+    }
+  });
+</script>
+</body>
+</html>
+

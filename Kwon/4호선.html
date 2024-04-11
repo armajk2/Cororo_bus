@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위글위글</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('./성.png'); /* 배경 이미지 경로 */
+            background-size: cover; /* 화면에 꽉 차도록 설정 */
+            background-repeat: no-repeat; /* 반복 없이 한 번만 나타나도록 설정 */
+            font-family: Arial, sans-serif;
+        }
+
+        .dizzy-image {
+            position: absolute;
+            animation: moveRight linear 9s infinite; /* 왼쪽에서 오른쪽으로 이동하는 애니메이션 */
+            width: 300px; /* 이미지 크기 조정 */
+            height: auto; /* 높이 자동으로 설정 */
+            top: 30%; /* 수직 위치를 랜덤하게 설정 */
+        }
+
+        .dizzy-image:nth-child(2) {
+            top: 15%;
+            width: 250px;
+            animation-delay: 3s;
+            left: -300px; / /* 두 번째 이미지의 수직 위치를 랜덤하게 설정 */
+        }
+        .dizzy-image:nth-child(3) {
+            animation: moveLeft linear 12s infinite; /* 오른쪽에서 왼쪽으로 이동하는 애니메이션 */
+            top: 48%; /* 수직 위치를 랜덤하게 설정 */
+            right: 0; /* 시작 위치 (오른쪽 화면 밖) */
+            width: 150px;
+        }
+
+        @keyframes moveRight {
+            0% {
+                left: -200px; /* 시작 위치 (왼쪽 화면 밖) */
+            }
+            100% {
+                left: calc(100% + 200px); /* 끝 위치 (오른쪽 화면 밖) */
+            }
+        }
+        @keyframes moveLeft {
+            0% {
+                right: -200px; /* 시작 위치 (오른쪽 화면 밖) */
+            }
+            100% {
+                right: calc(100% + 200px); /* 끝 위치 (왼쪽 화면 밖) */
+            }
+        }
+
+        /* 수정된 스타일 */
+        #burn-me {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 20px;
+            color: #ffffff;
+            opacity: 1; /* 수정: 텍스트를 초기에 안 보이도록 투명도를 0으로 변경 */
+            z-index: 9999;
+        }
+        .arrow-back {
+            display: inline-block;
+            width: 15px; /* 화살표 너비를 더 작게 */
+            height: 15px; /* 화살표 높이를 더 작게 */
+            background-color: transparent;
+            border: solid white; /* 테두리 색상 */
+            border-width: 0 5px 5px 0; /* 테두리 두께를 늘림 */
+            padding: 3px;
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            cursor: pointer;
+            position: fixed; /* 화살표를 화면에 고정 */
+            top: 20px; /* 화면 하단으로부터의 거리 */
+            left: 20px; /* 화면 오른쪽으로부터의 거리 */
+        }
+        .arrow-back:hover {
+            border-color: #ff89a8; /* 마우스 오버시 테두리 색상 변경 */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <img src="버스.png" alt="Dizzy Image" class="dizzy-image" onclick="showAlert()">
+    <img src="./ufo.png" alt="Dizzy Image" class="dizzy-image" onclick="showAlert()">
+    <img src="./catfly.png" alt="Dizzy Image" class="dizzy-image" onclick="showAlert()">
+    <div id="burn-me"></div> <!-- 수정: 텍스트를 표시할 빈 div 요소 -->
+
+    <div class="arrow-back" onclick="event.stopPropagation(); window.location='index.html';"></div>
+    <script>
+        // 페이지 로드 시 이미지 생성 및 배치 함수 호출
+        window.onload = createAndPlaceImages;
+
+        // 이미지 경로 배열
+        
+
+        // 이미지 생성 및 배치 함수
+        function createAndPlaceImages() {
+            const body = document.querySelector('body');
+
+            imagePaths.forEach((imagePath, index) => {
+                const image = document.createElement('img');
+                image.src = imagePath; // 이미지 경로
+                image.alt = 'Dizzy Image';
+                image.classList.add('dizzy-image');
+                image.style.left = `${Math.random() * 100}%`; // 랜덤한 수평 위치 설정
+                body.appendChild(image);
+            });
+
+            // 텍스트 한 글자씩 나타내고 지우는 함수 호출
+            fadeInOutText();
+        }
+
+        // 경고창 표시 함수
+        function showAlert() {
+            alert("아..어지러워.");
+        }
+
+        // 텍스트 한 글자씩 나타내고 지우는 함수
+        function fadeInOutText() {
+            const textElement = document.getElementById('burn-me');
+            const text = "잠시만요...! 저 좀 태워주세요!";
+            let index = 0;
+            let direction = 1; // 텍스트가 나타나는지(1) 지워지는지(-1) 여부를 나타내는 변수
+
+            setInterval(() => {
+                if (index === text.length) {
+                    direction = -1; // 텍스트를 모두 나타냈으면 지우는 방향으로 전환
+                } else if (index === 0 && direction === -1) {
+                    direction = 1; // 텍스트를 모두 지웠으면 다시 나타내는 방향으로 전환
+                }
+
+                if (direction === 1) {
+                    textElement.textContent += text[index];
+                    index++;
+                } else {
+                    textElement.textContent = textElement.textContent.slice(0, -1);
+                    index--;
+                }
+            }, 200); // 한 글자씩 추가되고 지워지는 시간 간격
+        }
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
+
