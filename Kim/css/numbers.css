@@ -57,6 +57,20 @@ h1 {
     letter-spacing: -40px;
 }
 
+.childred {
+    font-size: 800px;
+
+    color: #FF0000;
+    letter-spacing: -40px;
+}
+
+.childblue {
+    font-size: 800px;
+
+    color: #40c7b2;
+    letter-spacing: -40px;
+}
+
 .img img {
     position: absolute;
     cursor: pointer;

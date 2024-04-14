@@ -67,22 +67,48 @@ function moveBus() {
 }
 
 
-let inactivityTimer;
+// let inactivityTimer;
 
-function closePageAndOpenMain() {
-    window.close(); // Close the current page
-    window.open('index.html', '_self'); // Open main.html in the same tab
+// function closePageAndOpenMain() {
+//     window.close(); // Close the current page
+//     window.open('index.html', '_self'); // Open main.html in the same tab
+// }
+
+// function resetTimer() {
+//     clearTimeout(inactivityTimer);
+//     inactivityTimer = setTimeout(closePageAndOpenMain, 300000); 
+// }
+
+// document.addEventListener('mousemove', resetTimer);
+
+// resetTimer();
+
+
+
+document.addEventListener("scroll", function() {
+  var scrollPosition = window.scrollX;
+  if (scrollPosition >= 0 && scrollPosition < 1400) {
+      showSection(".ko");
+  } else if (scrollPosition >= 1400 && scrollPosition < 3000) {
+      showSection(".sol");
+  } else if (scrollPosition >= 3000 && scrollPosition < 4400) {
+      showSection(".ye");
+  } else if (scrollPosition >= 4400 && scrollPosition < 6300) {
+      showSection(".kim");
+  } else if (scrollPosition >= 6300 && scrollPosition < 8000) {
+      showSection(".sang");
+  } else if (scrollPosition >= 8000 && scrollPosition < 8800) {
+      showSection(".kwon");
+  }
+});
+
+function showSection(sectionClass) {
+  var sections = document.querySelectorAll(".cap-txt > div");
+  sections.forEach(function(section) {
+      section.style.display = "none"; // Hide all sections
+  });
+  var targetSection = document.querySelector(sectionClass);
+  if (targetSection) {
+      targetSection.style.display = "block"; // Show the target section
+  }
 }
-
-function resetTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(closePageAndOpenMain, 300000); 
-}
-
-document.addEventListener('mousemove', resetTimer);
-
-resetTimer();
-
-
-
-

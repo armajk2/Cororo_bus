@@ -7,6 +7,12 @@
       height: 100vh;
     }
 
+
+@font-face {
+  font-family: neodgm;
+  src: url(/font/neodgm.woff);
+}
+
     .circle {
       width: 30px;
       height: 30px;
@@ -37,6 +43,47 @@
       transition: background-color 0.5s ease;
       width: 800px;
     }
+
+  .caption{
+    position: fixed;
+    background-color: rgb(60, 60, 60);
+    right: 1%;
+    bottom: 10%;
+    width: 500px;
+    height: 250px;
+    z-index: 999;
+    font-family: neodgm;
+    color: white;
+    border-radius: 30px;
+}
+
+.cap{
+  background-color: black;
+  width: 410px;
+  height: 190px;
+  margin: 5%;
+}
+
+.cap-txt{
+  margin: 4%;
+  line-height: 30px;
+  font-size: 1.3rem;
+}
+
+.sol, .ko, .ye, .kim, .sang, .kwon{
+  position: absolute;
+  width: 400px;
+  left: 30px;
+  display: none;
+  transition: opacity 0.5s ease; /* Add transition effect */
+
+}
+
+
+
+
+
+
 
     .path{
       position: fixed;
@@ -79,7 +126,7 @@
       height: 100vh;
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;
+      flex-wrap: nowrap; 
       justify-content: flex-start;
       background-color: rgb(255, 0, 0,0.5);
   }

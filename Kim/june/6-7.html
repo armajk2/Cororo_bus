@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/numbers.css">
+    <style>
+        
+        /* 이미지 스타일 */
+        .img img {
+            position: absolute;
+            cursor: pointer;
+            cursor: hand;
+            border: 0;
+        }
+
+        /* 버튼들을 수평으로 배열하고 중앙 정렬 */
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-container2 {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 추가 버튼 스타일 */
+        .addButton {
+            width: 50px;
+    
+            cursor: pointer;
+            margin-right: 20px; /* 각 버튼 사이 간격 조절 */
+        }
+
+        /* 초기화 버튼 스타일 */
+        #clearButton {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        /* 스크롤 방지 */
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<script type='text/javascript'>
+    // 현재 페이지의 고유 식별자 (페이지 이름)
+    var pageIdentifier = "6-7";
+
+    // 페이지별로 로컬 스토리지 키를 동적으로 생성
+    var localStorageKey = 'imgData_' + pageIdentifier;
+
+    var imgData = JSON.parse(localStorage.getItem(localStorageKey)) || []; // 이미지 데이터를 저장할 배열
+
+    function moveDrag(e) {
+        var dmvx = e.clientX - targetObj.offsetX;
+        var dmvy = e.clientY - targetObj.offsetY;
+        targetObj.style.left = dmvx + "px";
+        targetObj.style.top = dmvy + "px";
+        // 현재 위치를 배열에 저장
+        imgData[targetObj.dataset.index] = {
+            left: dmvx,
+            top: dmvy,
+            src: targetObj.src // 이미지 소스도 저장
+        };
+        saveToLocalStorage();
+        return false;
+    }
+
+    function startDrag(e, obj) {
+        targetObj = obj;
+        targetObj.offsetX = e.offsetX;
+        targetObj.offsetY = e.offsetY;
+        document.onmousemove = moveDrag;
+        document.onmouseup = stopDrag;
+        e.preventDefault();
+    }
+
+    function stopDrag() {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    }
+
+    function saveToLocalStorage() {
+        localStorage.setItem(localStorageKey, JSON.stringify(imgData));
+    }
+
+    function addNewImage(src) {
+    var imgContainer = document.querySelector('.img');
+    var newImg = document.createElement('img');
+    newImg.src = src;
+    newImg.setAttribute("draggable", "true");
+    newImg.style.width = "50px";
+    newImg.style.position = "absolute"; // 이미지의 위치를 설정하기 위해 position을 'absolute'로 설정합니다.
+
+    // 랜덤한 left 및 top 값 설정
+    var maxWidth = document.documentElement.clientWidth - 50; // 브라우저의 가로 길이를 고려하여 최대 값 설정
+    var maxHeight = document.documentElement.clientHeight - 50; // 브라우저의 세로 길이를 고려하여 최대 값 설정
+    newImg.style.left = Math.floor(Math.random() * maxWidth) + "px"; // 랜덤한 left 값 설정
+    newImg.style.top = Math.floor(Math.random() * maxHeight) + "px"; // 랜덤한 top 값 설정
+
+    newImg.style.cursor = "pointer";
+    newImg.style.border = "0";
+    newImg.dataset.index = imgContainer.children.length; // Set the index for the new image
+    newImg.onmousedown = function(event) {
+        startDrag(event, this);
+    };
+    imgContainer.appendChild(newImg);
+    imgData.push({left: parseInt(newImg.style.left), top: parseInt(newImg.style.top), src: src});
+    saveToLocalStorage();
+}
+
+
+
+
+    window.onload = function() {
+        var imgContainer = document.querySelector('.img');
+        imgContainer.innerHTML = ""; // Clear existing images before re-rendering
+        for (var i = 0; i < imgData.length; i++) {
+            var img = document.createElement('img');
+            img.src = imgData[i].src;
+            img.setAttribute("draggable", "true");
+            img.style.width = "50px";
+            img.style.position = "absolute";
+            img.style.left = imgData[i].left + "px";
+            img.style.top = imgData[i].top + "px";
+            img.style.cursor = "pointer";
+            img.style.border = "0";
+            img.dataset.index = i;
+            img.onmousedown = function(event) {
+                startDrag(event, this);
+            };
+            imgContainer.appendChild(img);
+        }
+    };
+
+
+</script>
+
+<div class="bar">
+    <input type="button" class="img-button"  onclick="window.history.back()">
+    <input type="button" class="img-button2"  onclick="window.history.forward()">
+</div>
+
+<div class="h">
+
+    <h1>
+     2024/06
+    </h1>     
+   </div>
+
+<div class="img">
+    <!-- 이곳에 이미지들을 추가합니다. -->
+</div>
+
+<div class="container">
+    <div class="childblack">
+        7
+    </div>
+</div>
+
+<!-- 이미지를 클릭해서 추가 -->
+<div class="button-container">
+   
+    <img class="addButton" id="addButtonA" src="../img/stickerA.png" onclick="addNewImage('../img/stickerA.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonB" src="../img/stickerB.png" onclick="addNewImage('../img/stickerB.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonC" src="../img/stickerC.png" onclick="addNewImage('../img/stickerC.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonD" src="../img/stickerD.png" onclick="addNewImage('../img/stickerD.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonE" src="../img/stickerE.png" onclick="addNewImage('../img/stickerE.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonF" src="../img/stickerF.png" onclick="addNewImage('../img/stickerF.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonG" src="../img/stickerG.png" onclick="addNewImage('../img/stickerG.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonH" src="../img/stickerH.png" onclick="addNewImage('../img/stickerH.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonI" src="../img/stickerI.png" onclick="addNewImage('../img/stickerI.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonJ" src="../img/stickerJ.png" onclick="addNewImage('../img/stickerJ.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonK" src="../img/stickerK.png" onclick="addNewImage('../img/stickerK.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonL" src="../img/stickerL.png" onclick="addNewImage('../img/stickerL.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonM" src="../img/stickerM.png" onclick="addNewImage('../img/stickerM.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonN" src="../img/stickerN.png" onclick="addNewImage('../img/stickerN.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonO" src="../img/stickerO.png" onclick="addNewImage('../img/stickerO.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonP" src="../img/stickerP.png" onclick="addNewImage('../img/stickerP.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonQ" src="../img/stickerQ.png" onclick="addNewImage('../img/stickerQ.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonR" src="../img/stickerR.png" onclick="addNewImage('../img/stickerR.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonS" src="../img/stickerS.png" onclick="addNewImage('../img/stickerS.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonT" src="../img/stickerT.png" onclick="addNewImage('../img/stickerT.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonU" src="../img/stickerU.png" onclick="addNewImage('../img/stickerU.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonV" src="../img/stickerV.png" onclick="addNewImage('../img/stickerV.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonW" src="../img/stickerW.png" onclick="addNewImage('../img/stickerW.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonX" src="../img/stickerX.png" onclick="addNewImage('../img/stickerX.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonY" src="../img/stickerY.png" onclick="addNewImage('../img/stickerY.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonZ" src="../img/stickerZ.png" onclick="addNewImage('../img/stickerZ.png', '13vw', '60vh')" />
+   
+   
+</div>
+
+<div class="button-container2">
+    <img class="addButton" id="addButtonQue" src="../img/stickerque.png" onclick="addNewImage('../img/stickerque.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButton!" src="../img/sticker!.png" onclick="addNewImage('../img/sticker!.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtondot" src="../img/stickerdot.png" onclick="addNewImage('../img/stickerdot.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonban" src="../img/stickerban.png" onclick="addNewImage('../img/stickerban.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtondash" src="../img/stickerdash.png" onclick="addNewImage('../img/stickerdash.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonright" src="../img/stickerapo.png" onclick="addNewImage('../img/stickerapo.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonmiddle" src="../img/stickermiddle.png" onclick="addNewImage('../img/stickermiddle.png', '13vw', '60vh')" />
+   
+    <img class="addButton" id="addButtonleft" src="../img/stickerleft.png" onclick="addNewImage('../img/stickerleft.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonright" src="../img/stickerright.png" onclick="addNewImage('../img/stickerright.png', '13vw', '60vh')" />
+   
+    <img class="addButton" id="addButtonheart" src="../img/stickerheart.png" onclick="addNewImage('../img/stickerheart.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonstar" src="../img/stickerstar.png" onclick="addNewImage('../img/stickerstar.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonhalloween" src="../img/stickerhalloween.png" onclick="addNewImage('../img/stickerhalloween.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonSmile" src="../img/stickersmile.png" onclick="addNewImage('../img/stickersmile.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtonface" src="../img/stickerface.png" onclick="addNewImage('../img/stickerface.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtongift" src="../img/stickergift.png" onclick="addNewImage('../img/stickergift.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtoncat" src="../img/stickercat.png" onclick="addNewImage('../img/stickercat.png', '13vw', '60vh')" />
+    <img class="addButton" id="addButtondog" src="../img/stickerdog.png" onclick="addNewImage('../img/stickerdog.png', '13vw', '60vh')" />
+   
+   
+</div>
+
+<!-- 이미지 초기화 버튼 -->
+<!-- <button id="clearButton" onclick="clearImages()">clear</button> -->
+
+</body>
+</html>
